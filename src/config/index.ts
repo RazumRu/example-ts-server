@@ -1,0 +1,39 @@
+import {INJECT_SERVICE as INJECT_SERVICE_INFRA} from '@example/infra'
+import {ERROR_CODE as ERROR_CODE_MODULE} from '@example/errors'
+
+export const INJECT_SERVICE = {
+    ...INJECT_SERVICE_INFRA,
+    USER_SERVICE: Symbol('USER_SERVICE'),
+    AUTH_SERVICE: Symbol('AUTH_SERVICE'),
+    SESSION_SERVICE: Symbol('SESSION_SERVICE'),
+    APP_CONFIG_SERVICE: Symbol('APP_CONFIG_SERVICE'),
+    WEB3_CLIENT: Symbol('WEB3_CLIENT'),
+    TRANSACTION_STORAGE_SERVICE: Symbol('TRANSACTION_STORAGE_SERVICE'),
+    PAYMENT_SERVICE: Symbol('PAYMENT_SERVICE')
+}
+
+export const ERROR_CODE = {
+    ...ERROR_CODE_MODULE,
+    USER_NOT_FOUND: 'USER_NOT_FOUND',
+    SESSION_NOT_FOUND: 'SESSION_NOT_FOUND',
+    PASSWORD_INCORRECT: 'PASSWORD_INCORRECT',
+    PAYMENT_ACCOUNT_ALREADY_EXISTS: 'PAYMENT_ACCOUNT_ALREADY_EXISTS',
+    PAYMENT_ACCOUNT_NOT_FOUND: 'PAYMENT_ACCOUNT_NOT_FOUND',
+    TRANSACTION_NOT_FOUND: 'TRANSACTION_NOT_FOUND',
+    LOW_BALANCE: 'LOW_BALANCE'
+}
+
+export const SPECS = {
+    AUTH: 'auth',
+    PAYMENTS: 'payments'
+}
+
+export const OPERATIONS = {
+    LOGIN: 'auth.login',
+    REGISTER: 'auth.register',
+    CREATE_PAYMENT_ACCOUNT: 'payments.createAccount',
+    GET_PAYMENT_ACCOUNT: 'payments.getAccount',
+    CREATE_USER_TRANSACTION: 'payments.createUserTransaction',
+    APPROVE_TRANSACTION: 'payments.approveTransaction',
+    GET_TRANSACTIONS: 'payments.getTransactions'
+}
