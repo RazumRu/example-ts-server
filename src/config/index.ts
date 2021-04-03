@@ -1,8 +1,6 @@
-import {INJECT_SERVICE as INJECT_SERVICE_INFRA} from '@example/infra'
-import {ERROR_CODE as ERROR_CODE_MODULE} from '@example/errors'
+import {ERROR_CODE as ERROR_CODE_MODULE} from '@bibtrip/errors'
 
 export const INJECT_SERVICE = {
-    ...INJECT_SERVICE_INFRA,
     USER_SERVICE: Symbol('USER_SERVICE'),
     AUTH_SERVICE: Symbol('AUTH_SERVICE'),
     SESSION_SERVICE: Symbol('SESSION_SERVICE'),

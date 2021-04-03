@@ -1,48 +1,30 @@
 import {
     NODE_ENV
-} from '@example/infra/dist/config'
+} from '@bibtrip/config/dist/config'
+import {containerCreator} from '@bibtrip/container-creator'
 
 process.env.NODE_ENV = NODE_ENV.TEST
 
 import {
     destroyTestServer,
-    getHttpRequester,
     initTestServer
-} from '@example/infra'
+} from '@bibtrip/infra'
+import {configContainerCreator} from '@bibtrip/config'
+import {infraContainerCreator} from '@bibtrip/infra/dist/inversify.cfg'
+import {transportContainerCreator} from '@bibtrip/transport'
 import '../modules'
-import '@src/inversify.cfg'
-import {ILoginResponseDTO, IRegisterRequestDTO} from '@modules/core/auth'
-import * as faker from 'faker'
-import {OPERATIONS} from '@src/config'
-import _ from 'lodash'
+import {mainContainerCreator} from '@src/inversify.cfg'
 
 export const init = async () => {
+    await containerCreator(
+        configContainerCreator(),
+        infraContainerCreator(),
+        transportContainerCreator(),
+        mainContainerCreator(),
+    )
     await initTestServer()
 }
 
 export const destroy = async () => {
     await destroyTestServer()
-}
-
-// ----- helpers -----
-
-export const createUser = async (
-    data?: Partial<IRegisterRequestDTO>
-): Promise<ILoginResponseDTO> => {
-    const httpRequester = getHttpRequester()
-    const reqData: IRegisterRequestDTO = {
-        email: _.get(data, 'email', faker.internet.email()),
-        name: _.get(data, 'name', faker.random.alphaNumeric(15)),
-        password: _.get(data, 'password', faker.internet.password())
-    }
-
-    const {result} = await httpRequester.swaggerRequest<ILoginResponseDTO>(
-        undefined,
-        OPERATIONS.REGISTER,
-        reqData,
-    )
-
-    expect(result).toBeTruthy()
-
-    return result
 }

@@ -1,14 +1,13 @@
 # example-ts-server
 
-Все базовые модули вынесены в отдельный npm репозиторий.
+All basic modules have been moved to a separate npm repository. It`s not include
 
-У костяка модульная структура - все модули (набор контроллеров, дтошек, сервисов...) находятся в пвпке modules.
+The backbone has a modular structure - all modules (a set of controllers, dto, services ...) are in the modules dir.
 
-Для запуска сервера в дев-режиме (с биндом на изменеие файлов) наберите команду `npm run dev`
+To start the server in dev mode (with a bind to modify files), use the command `npm run dev`
 
-Для запуска тестов (jest) наберите команду `npm run test`
+To run tests (jest) use the command `npm run test`
 
-Для запуска билда наберите команду `npm run bild`
+To run the build, use the command `npm run bild`
 
-Для запуска сервера в прод-режиме из сбилженых файлов наберите команду `npm run start
-`
+To start the server in production mode from the build files, use type the command `npm run start`
